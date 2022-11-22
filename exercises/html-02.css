@@ -60,7 +60,7 @@ header, main, footer {
 /* SECTION: ABOUT */
 #section-about {
 	display: flex;
-	gap: 2rem;
+	gap: 1rem;
 	align-items: center;
 }
 
