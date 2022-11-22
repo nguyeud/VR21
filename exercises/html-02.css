@@ -60,6 +60,8 @@ header, main, footer {
 /* SECTION: ABOUT */
 #section-about {
 	display: flex;
+	gap: 2rem;
+	align-items: center;
 }
 
 #about-img {
