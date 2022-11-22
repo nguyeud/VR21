@@ -67,7 +67,7 @@ html {
         linear-gradient(rgba(22, 26, 38, 0.5),
         rgba(22, 26, 38, 0.5)),
         /* image */
-        url(https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
+        url(/images/background.png);
     background-size:        cover;
     background-repeat:      no-repeat;
     background-position:    center center;
