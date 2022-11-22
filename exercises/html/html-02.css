@@ -1,0 +1,58 @@
+/* TABLE FORMATTING */
+table, th, tr, td {
+    border: 1px solid black; 
+    border-collapse: collapse; 
+    text-align: left;
+	padding: .25rem;
+}
+
+th {
+	font-weight: bold;
+}
+
+/* BLOCKQUOTE FORMATTING */
+blockquote {
+	padding: 1rem;
+}
+
+/* ALL MAIN SEMANTICS */
+header, main, footer {
+	padding: .5rem 0 0 .5rem;
+}
+
+/* NAVBAR */
+#nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* MAIN */
+#main-header {
+	font-weight: bold;
+	font-size: 1.8rem;
+	margin-bottom: 1rem;
+}
+
+/* ALL SECTIONS */
+.section {
+	margin-bottom: 1.5rem;
+}
+
+.section-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+	margin-bottom: .5rem;
+}
+
+/* FORM: CONTACT */
+.form-header {
+	font-weight: bold;
+}
+
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	margin-bottom: 1rem;
+}
