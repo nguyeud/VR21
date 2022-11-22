@@ -19,3 +19,15 @@
     font-size: 3vw;
     font-style: italic;
 }
+
+/* SECTION: ABOUT */
+#section-about {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+#pfp {
+    width: 150px;
+    border-radius: 50%;
+}
