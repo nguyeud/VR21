@@ -117,3 +117,13 @@ header {
     font-size: 3vw;
     font-style: italic;
 }
+
+/* ALL SECTIONS */
+.section {
+    padding: 4rem;
+}
+
+.section-header {
+    font-weight: 500;
+    font-size: 2.4rem;
+}
