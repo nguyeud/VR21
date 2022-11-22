@@ -1,70 +1,21 @@
-/* ALL SECTIONS */
-.section {
-    padding: 4rem;
-}
-
-.section-header {
-    font-weight: 500;
-    font-size: 2.4rem;
-}
-
 /* SECTION: HERO */
-#hero {
-    height: 100vh;
-
-    /* background image */
-    background:
-        /* transparent overlay */
-        linear-gradient(rgba(22, 26, 38, 0.5),
-        rgba(22, 26, 38, 0.5)),
-        /* image */
-        url(../images/background.png);
-    background-size:        cover;
-    background-repeat:      no-repeat;
-    background-position:    center center;
-}
-
-header {
-    padding: 2rem 0 0 4rem;
-}
-
-#nav-links {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-}
-
-.nav-link {
-    color: #FFFFFF;
-    font-size: 1.8rem;
-    font-weight: 500;
-}
-
-.logo {
-    width: 3.6rem;
-    height: auto;
-}
-
 #hero-text {
     font-family: 'Lora', serif;
     color: #FFFFFF;
+    font-weight: 500;
 
     height: calc(100vh - 4rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 4rem;
-
-    padding-left: 4rem;
 }
 
 #hero-h1 {
-    font-weight: 500;
     font-size: 6vw;
 }
 
 #hero-h2 {
-    font-weight: 500;
     font-size: 3vw;
     font-style: italic;
 }

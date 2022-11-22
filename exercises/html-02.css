@@ -1,10 +1,18 @@
+/* ROOT */
+html {
+	background-color: gainsboro;
+}
+
 /* TEXT FORMATTING */
 b {
 	font-weight: bold;
 }
 
 /* TABLE FORMATTING */
-table, th, tr, td {
+table {
+	margin: .5rem 0 .5rem 0;
+}
+th, tr, td {
     border: 1px solid black; 
     border-collapse: collapse; 
     text-align: left;
@@ -19,14 +27,9 @@ caption {
 	text-align: left;
 }
 
-/* BLOCKQUOTE FORMATTING */
-blockquote {
-	padding: 1rem;
-}
-
 /* ALL MAIN SEMANTICS */
 header, main, footer {
-	padding: .5rem 0 0 .5rem;
+	padding: .5rem;
 }
 
 /* NAVBAR */
@@ -54,6 +57,18 @@ header, main, footer {
 	margin-bottom: .5rem;
 }
 
+/* SECTION: ABOUT */
+#section-about {
+	display: flex;
+}
+
+#about-img {
+	width: 100px;
+  	height: 100px;
+  	object-fit: cover;
+	border-radius: 50%;
+}
+
 /* FORM: CONTACT */
 .form-header {
 	font-weight: bold;
@@ -65,3 +80,4 @@ header, main, footer {
 	gap: .5rem;
 	margin-bottom: 1rem;
 }
+

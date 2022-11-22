@@ -1,6 +1,88 @@
+/* IMPORT FONT */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 /* ROOT  */
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 html {
     font-size: 14px;
     /* font-family: 'Lora', serif; */
     font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* FORMATTING: LIST */
+.display-as-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ALL SECTIONS */
+#hero, main, footer {
+    padding: 1.5rem 4rem 1.5rem 4rem;
+    flex-shrink: 0;
+}
+
+.section-header {
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.section:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+/* HEADER & NAVBAR */
+#hero {
+    /* background image */
+    background:
+        /* transparent overlay */
+        linear-gradient(rgba(38, 70, 83, 0.5),
+        rgba(38, 70, 83, 0.5)),
+        /* image */
+        url(../images/background.png);
+    background-size:        cover;
+    background-repeat:      no-repeat;
+    background-position:    top center;
+}
+
+.logo {
+    width: 2rem;
+    height: auto;
+}
+
+#nav-links {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-link {
+    color: #FFFFFF;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+/* MAIN */
+main {
+    flex-grow: 1;
+}
+
+#main-header {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* FOOTER */
+footer {
+    background-color: rgba(38, 70, 83, 0.5);
 }
