@@ -6,7 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS - Box Model</title>
     <style>
+        div {
+            margin: 2em;
+            padding: 1em;
+            background-color: lightblue;
+            color: blue;
+            /* outline is better for using hovers */
+            /* outline is outside the content, border is inside the content */
+            outline: 1pt solid green;
+            outline-offset: 5px;
+            width: 30em;
+            box-sizing: border-box;
+            height: 10em;
+        }
 
+        div:hover {
+            outline-width: 6pt;
+        }
+
+        body {
+            font-size: 18pt;
+        }
     </style>
 </head>
 <body>
