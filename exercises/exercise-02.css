@@ -1,20 +1,12 @@
 /* ROOT */
 html {
-	background-color: gainsboro;
+	background-color: white;
 }
 
-/* TEXT FORMATTING */
-b {
-	font-weight: bold;
-}
-
-/* TABLE FORMATTING */
-table {
-	margin: .5rem 0 .5rem 0;
-}
+/* FORMATTING: TABLE */
 th, tr, td {
     border: 1px solid black; 
-    border-collapse: collapse; 
+    border-collapse: collapse;
     text-align: left;
 	padding: .25rem;
 }
@@ -27,9 +19,9 @@ caption {
 	text-align: left;
 }
 
-/* ALL MAIN SEMANTICS */
-header, main, footer {
-	padding: .5rem;
+/* FORMATTING: LIST */
+li {
+	list-style-type: none;
 }
 
 /* NAVBAR */
@@ -37,13 +29,7 @@ header, main, footer {
     display: flex;
     align-items: center;
     gap: 2rem;
-}
-
-/* MAIN */
-#main-header {
-	font-weight: bold;
-	font-size: 1.8rem;
-	margin-bottom: 1rem;
+	padding-left: 0;
 }
 
 /* ALL SECTIONS */
@@ -52,9 +38,7 @@ header, main, footer {
 }
 
 .section-header {
-    font-weight: bold;
-    font-size: 1.2rem;
-	margin-bottom: .5rem;
+    text-transform: uppercase;
 }
 
 /* SECTION: ABOUT */
@@ -72,14 +56,9 @@ header, main, footer {
 }
 
 /* FORM: CONTACT */
-.form-header {
-	font-weight: bold;
-}
-
 .contact-form {
 	display: flex;
 	flex-direction: column;
 	gap: .5rem;
 	margin-bottom: 1rem;
 }
-
