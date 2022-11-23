@@ -15,9 +15,10 @@
             /* outline is outside the content, border is inside the content */
             outline: 1pt solid green;
             outline-offset: 5px;
-            width: 30em;
+            width: 25%;
             box-sizing: border-box;
             height: 10em;
+            position: relative;
         }
 
         div:hover {
@@ -26,12 +27,25 @@
 
         body {
             font-size: 18pt;
+            display: flex;
+            justify-content: center;
+        }
+
+        #position {
+            position: absolute;
+            top: 10em;
         }
     </style>
 </head>
 <body>
     <div>
-        box
+        box1
+    </div>
+    <div id="position">
+        box2
+    </div>
+    <div>
+        box3
     </div>
 </body>
 </html>
