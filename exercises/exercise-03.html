@@ -5,55 +5,211 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS - Specificity</title>
+    <title>CSS - Mock-up 2 (Forms)</title>
     <style>
-        #target {
-            font-style: italic;
-            font-weight: normal;
+        /* FORMATTING: TABLE */
+        th, tr, td {
+            border: 1px solid black;
+            text-align: left;
+            padding: .25rem;
         }
 
-        p {
+        th {
             font-weight: bold;
         }
 
-        .urgent {
-            color: red;
+        caption {
+            text-align: left;
         }
 
-        div {
-            background-color: #e0e0e0;
+        /* ALL SECTIONS */
+        .section {
+            margin-bottom: 1.5rem;
         }
 
-        body {
-            padding: 2em;
+        .section-header {
+            text-transform: uppercase;
         }
 
-        div>p {
-            font-size: larger;
+        /* SECTION: ABOUT */
+        #section-about {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
-        a {
-            text-decoration: none;
+        #about-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        p:first-child {
-            font-family: 'Courier New', Courier, monospace;
+        /* FORM: CONTACT */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 
 <body>
-    <div>
-        <p id="target">What will this look like?
-            <a href="#target">Another paragraph inside the div.</a>
-        </p>
-    </div>
-    <p>This is a second paragraph.</p>
-    <p class="urgent">This is super-duper urgent!</p>
+    <header>
+        <nav>
+            <a href="#">Home</a> 
+            <a href="#about">About</a> 
+            <a href="#team-comps">Team Comps</a> 
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <h1 id="main-header">Team Fight Tactics (TFT)</h1>
+        <section class="section" id="about">
+            <h2 class="section-header">About</h2>
+            <div id="section-about">
+                <img id="about-img"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.dotesports.com%2Fwp-content%2Fuploads%2F2021%2F06%2F01145506%2FTeamfight-Tactics-Urf-Dowsie.jpg&f=1&nofb=1&ipt=9131f95f7f77b8a732e38ed2bc0b50c1dbd653ab960e19af7b6402659c6e7ce6&ipo=images">
+                <p>What is <a
+                        href="https://www.leagueoflegends.com/en-us/news/game-updates/what-is-teamfight-tactics/">Team
+                        Fight Tactics (TFT)</a>?
+                    Teamfight Tactics is a strategic free-for-all game of attrition featuring iconic champions from
+                    League of Legends. Your goal? Grow your team and protect your board to become the last player
+                    standing.</p>
+            </div>
+        </section>
+        <section class="section" id="team-comps">
+            <h2 class="section-header">Team Comps</h2>
+            <p>We're experienced in creating top-tier team comps to beat the competition! See an example below:</p>
+            <table>
+                <caption><b>TFT Set 8</b>: Zoe & Friends</caption>
+                <thead>
+                    <tr>
+                        <th>Champion Name</th>
+                        <th>Synergies</th>
+                        <th>Cost</th>
+                        <th>Item(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Alistar</th>
+                        <td>Ox Force, Aegis, Mascot</td>
+                        <td>3</td>
+                        <td>Bramble Vest, Dragon's Claw, Warmog's Armor</td>
+                    </tr>
+                    <tr>
+                        <th>Zoe</th>
+                        <td>Gadgeteen, Hacker, Prankster</td>
+                        <td>3</td>
+                        <td>Archangel's Staff, Jeweled Gauntlet, Blue Buff</td>
+                    </tr>
+                    <tr>
+                        <th>Janna</th>
+                        <td>Civilian, Spellslinger, Forecaster</td>
+                        <td>5</td>
+                        <td>Morellonomicon</td>
+                    </tr>
+                    <tr>
+                        <th>Nunu & Williams</th>
+                        <td>Gadgeteen, Mascot</td>
+                        <td>5</td>
+                        <td>Ionic Spark</td>
+                    </tr>
+                    <tr>
+                        <th>Ekko</th>
+                        <td>Star Guardian, Prankster, Aegis</td>
+                        <td>4</td>
+                        <td>Zz'Rot Portal</td>
+                    </tr>
+                    <tr>
+                        <th>Syndra</th>
+                        <td>Star Guardian, Heart</td>
+                        <td>5</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <th>Annie</th>
+                        <td>Spellslinger, Gadgeteen, Ox Force</td>
+                        <td>2</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <th>Yuumi</th>
+                        <td>Star Guardian, Heart, Mascot</td>
+                        <td>2</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <th>Galio</th>
+                        <td>Civilian, Mascot</td>
+                        <td>1</td>
+                        <td>N/A</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Total Number of Champions:</th>
+                        <td>9</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+        <section class="section" id="contact">
+            <h2 class="section-header">Contact</h2>
+            <form id="contact-form">
+                <div class="contact-form">
+                    <h3 class="form-header">General Information</h3>
+                    <div>
+                        <label for="first-name">First Name</label>
+                        <input type="text" name="first-name">
+                    </div>
+                    <div>
+                        <label for="last-name">Last Name</label>
+                        <input type="text" name="last-name">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div>
+                        <label for="bday">Birthday</label>
+                        <input type="date" name="bday">
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 class="form-header">Questionnaire</h3>
+                    <div>
+                        <label for="rank">What's your peak rank in TFT?</label>
+                        <select name="rank">
+                            <option value="0">Iron</option>
+                            <option value="0">Bronze</option>
+                            <option value="0">Silver</option>
+                            <option value="0">Gold</option>
+                            <option value="0">Platinum</option>
+                            <option value="0">Diamond</option>
+                            <option value="0">Master+</option>
+                        </select>
+                    </div>
+                    <div>
+                        Would you like to sign up for our newsletter?
+                        <input type="radio" name="sign-up" id="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" name="sign-up" id="no">
+                        <label for="no">No</label>
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        Riot Games, TFT, and any associated logos are trademarks, service marks, and/or registered trademarks of Riot
+        Games, Inc. This project is in no way affiliated with, authorized, maintained, sponsored or endorsed by Riot
+        Games, Inc or any of its affiliates or subsidiaries.
+    </footer>
 </body>
 
 </html>
