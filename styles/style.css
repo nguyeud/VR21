@@ -83,6 +83,37 @@ main {
     margin-bottom: 2rem;
 }
 
+/* CARDS */
+#cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    padding: 1rem;
+    border-radius: .75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    background-color: rgba(211,211,211,.25);
+    
+}
+
+.card-header {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card-img {
+    width: 20rem;
+    height: 15rem;
+    object-fit: cover;
+}
+
 /* FOOTER */
 footer {
     background-color: rgba(38, 70, 83, 0.5);
