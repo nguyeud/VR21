@@ -24,6 +24,15 @@ body {
     flex-direction: column;
 }
 
+/* FORMATING: LINKS */
+a {
+    color: rgba(38, 70, 83, 0.5);
+}
+
+a:hover {
+    color: rgba(211,211,211,.75);
+}
+
 /* ALL SECTIONS */
 #hero, main, footer {
     padding: 1.5rem 4rem 1.5rem 4rem;
