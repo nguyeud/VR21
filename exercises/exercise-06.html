@@ -13,94 +13,1159 @@
 
 <body>
   <header>
-    <!-- Pplace navbar here -->
+    <nav class="navbar bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand">Title of Website</a>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+          Add
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addModalLabel">Add</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="form-add">
+                  <div class="mb-3">
+                    <label for="form-image" class="form-label">Image</label>
+                    <input type="input" class="form-control" id="form-image">
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-title" class="form-label">Title</label>
+                    <input type="input" class="form-control" id="form-title">
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-textarea" class="form-label">Description</label>
+  <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   </header>
   <main>
-    <!-- Place main content here -->
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, fuga nostrum! In repudiandae earum,
-            provident ratione veniam recusandae beatae est eius dignissimos suscipit repellendus nulla. Illo inventore
-            animi labore velit.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>At saepe cumque impedit ut tempora sequi quaerat id! Ipsam reiciendis iste natus veniam doloremque ut
-            dignissimos tempora nesciunt commodi aut laboriosam, ea obcaecati culpa? Earum necessitatibus illum culpa
-            debitis!</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Officia, eveniet error, doloribus voluptatum debitis libero quae expedita totam quisquam culpa voluptas
-            optio facere. Expedita, ipsa. Nobis rerum possimus, quae unde delectus voluptate tempora quis alias. Magnam,
-            fugiat esse.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Magnam esse deleniti aliquid temporibus unde cupiditate rerum accusamus impedit non rem placeat reiciendis
-            doloribus facilis eveniet, quam, asperiores qui sapiente velit saepe a molestias! Nostrum deserunt
-            blanditiis beatae praesentium?</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores iusto amet autem necessitatibus maxime
-            velit eum cupiditate corrupti aliquam! Mollitia recusandae maiores cupiditate voluptate quia eveniet ipsam
-            vel explicabo ab?</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Maiores ad ipsam adipisci deserunt illum fugiat voluptates eligendi itaque, vitae voluptatibus voluptas
-            beatae aliquam doloribus numquam nam explicabo totam libero, commodi debitis cum alias necessitatibus
-            maxime. Molestias, molestiae esse.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Numquam voluptas libero at odit exercitationem, reiciendis voluptatibus qui, quae eos excepturi ratione
-            sequi perspiciatis asperiores. Totam perspiciatis, debitis optio nulla cum, laborum dicta, doloremque hic
-            aliquam minus a nam.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Repudiandae illum, quasi delectus et atque quia vitae iusto? Maiores qui libero quod soluta. Ipsum id natus
-            nisi perferendis, iure architecto necessitatibus eum fuga possimus quia, reprehenderit dolor delectus ullam.
-          </p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda repudiandae ab aliquid quod amet
-            perferendis, doloribus expedita, qui cupiditate excepturi est sunt, quasi non officiis voluptatum ea tenetur
-            et! Illum!</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Itaque earum laborum, ut fugiat deleniti ab maxime tenetur recusandae aperiam error eveniet in perferendis
-            dolor possimus omnis molestiae magnam obcaecati totam id. Eligendi quae aliquid est totam et asperiores?</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Suscipit nesciunt reiciendis itaque doloremque et natus quisquam quod, hic modi quidem delectus repellat
-            quam minima quos praesentium aliquid labore temporibus soluta sed. Voluptatibus consectetur expedita dolore
-            eveniet, tempora itaque.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Soluta ducimus reprehenderit minima tenetur. Reprehenderit eum doloremque quos totam labore voluptatem fuga
-            illo praesentium quis ratione, reiciendis libero deleniti quia! Distinctio fuga culpa voluptate praesentium
-            nulla facere aperiam necessitatibus.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempore perferendis ullam nam, pariatur
-            recusandae perspiciatis sapiente vero repudiandae consequuntur error voluptate corporis et officia, quae
-            fugit corrupti iure minus.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Labore hic nam laborum, quisquam distinctio amet quod. Consequatur magnam nam tenetur asperiores a sunt
-            illum provident, in accusantium itaque similique animi esse hic temporibus rerum iure error ab. Libero.</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Quasi cum quidem odit id esse sint molestiae at, ipsa dolor et praesentium vitae harum non ex, vero totam
-            odio rem exercitationem iure, hic quas ea quo perspiciatis! Dignissimos, ea!</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-md-3">
-          <p>Ut eos nemo, deserunt eveniet, accusantium dignissimos minima cumque, quam molestias ducimus suscipit
-            impedit aliquid. Quidem accusantium, dolore, suscipit ea autem, repellat temporibus corrupti ex nam esse
-            ipsa unde voluptatibus?</p>
+          <div class="card">
+            <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveModal">
+                Update
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="saveModalLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-update">
+                        <div class="mb-3">
+                          <label for="form-image" class="form-label">Image</label>
+                          <input type="input" class="form-control" id="form-image">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-title" class="form-label">Title</label>
+                          <input type="input" class="form-control" id="form-title">
+                        </div>
+                        <div class="mb-3">
+                          <label for="form-textarea" class="form-label">Description</label>
+        <textarea class="form-control" id="form-textarea" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-danger">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
