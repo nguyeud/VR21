@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS - Media Queries</title>
+    <style>
+        .resize {
+            background-color: black;
+        }
+
+        .sizing {
+            background-color: white;
+            height: 100px;
+            width: 100px;
+        }
+
+        @media (min-width: 320px) {
+            body {
+                background-color: red;
+            }
+
+            .resize {
+                height: 100px;
+                width: 100px;
+            }
+
+            .sizing {
+            background-color: blue;
+            }
+        }
+
+        @media (min-width: 480px) {
+            body {
+                background-color: blue;
+            }
+
+            .resize {
+                height: 200px;
+                width: 200px;
+            }
+
+            .sizing {
+            background-color: purple;
+            }
+        }
+
+        @media (min-width: 600px) {
+            body {
+                background-color: purple;
+            }
+
+            .resize {
+                height: 300px;
+                width: 300px;
+            }
+
+            .sizing {
+            background-color: yellow;
+            }
+        }
+
+        @media (min-width: 800px) {
+            body {
+                background-color: yellow;
+            }
+
+            .resize {
+                height: 400px;
+                width: 400px;
+            }
+
+            .sizing {
+            background-color: green;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            body {
+                background-color: green;
+            }
+
+            .resize {
+                height: 500px;
+                width: 500px;
+            }
+
+            .sizing {
+            background-color: orange;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            body {
+                background-color: orange;
+            }
+
+            .resize {
+                height: 600px;
+                width: 600px;
+            }
+
+            .sizing {
+            background-color: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resize"></div>
+    <div class="sizing"></div>
+</body>
+</html>
