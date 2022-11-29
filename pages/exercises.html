@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>In Class Exercises</title>
-    <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../styles/style.css">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
-<body>
-    <section id="hero">
-        <header>
-            <nav>
-                <ul id="nav-links">
-                    <li><a class="nav-link" href="../index.html"><img class="logo" src="../images/icons8-lantern-96-white.png"></li>
-                    <li><a class="nav-link" href="../index.html#about">ABOUT</a></li>
-                    <li><a class="nav-link" href="../index.html#portfolio">PORTFOLIO</a></li>
-                    <li><a class="nav-link" href="https://drive.google.com/file/d/1NdQi2jXbNIJnHFdSLpEKEt2WG9tM91v9/view?usp=share_link">RESUME</a></li>
-                    <li><a class="nav-link" href="../index.html#contact">CONTACT</a></li>
-                </ul>
-            </nav>
-        </header>
-    </section>
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../images/icons8-lantern-96-black.png" alt="Uyen" width="20"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="#about">About</a>
+                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                    <a class="nav-link"
+                        href="https://drive.google.com/file/d/1NdQi2jXbNIJnHFdSLpEKEt2WG9tM91v9/view?usp=share_link"
+                        target="_blank">Resume</a>
+                    <a class="nav-link" href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header class="py-5 bg-image-full"
+        style="background-image: url('https://images.unsplash.com/photo-1517315003714-a071486bd9ea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80')">
+        <div class="text-center my-6">
+            <h1 class="text-black fs-3 fw-bolder">Exercises</h1>
+            <p class="text-black-50 mb-0">HTML, CSS, and JavaScript In Class Exercises</p>
+        </div>
+    </header>
     <main>
-        <h1 id="main-header">HTML, CSS, and JavaScript Exercises</h1>
-        <section class="section" id="html">
-            <h2 class="section-header">HTML</h2>
-            <div class="display-as-list">
-                <a href="../exercises/exercise-01.html">HTML - Mock 1 (Basics)</a>
-                <a href="../exercises/exercise-02.html">HTML - Mock 2 (Forms)</a>
+        <section id="about" class="py-4">
+            <div class="container my-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2>HTML</h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="../exercises/exercise-01.html">HTML - Mock 1 (Basics)</a></li>
+                            <li class="list-group-item"><a href="../exercises/exercise-02.html">HTML - Mock 2 (Forms)</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="section" id="css">
-            <h2 class="section-header">CSS</h2>
-            <div class="display-as-list">
-                <a href="../exercises/exercise-03.html">CSS - Mock-up 2 (Forms)</a>
-                <a href="../exercises/exercise-04.html">CSS - Specificity & Selectors</a>
-                <a href="../exercises/exercise-05.html">CSS - Box Model</a>
-                <a href="../exercises/exercise-06.html">CSS - Bootstrap</a>
+        <section id="about" class="py-4">
+            <div class="container my-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2>CSS</h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="../exercises/exercise-03.html">CSS - Mock-up 2 (Forms)</a></li>
+                            <li class="list-group-item"><a href="../exercises/exercise-04.html">CSS - Specificity & Selectors</a></li>
+                            <li class="list-group-item"><a href="../exercises/exercise-05.html">CSS - Box Model</a></li>
+                            <li class="list-group-item"><a href="../exercises/exercise-06.html">CSS - Bootstrap</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    <footer id="contact">
-        <a href="https://www.linkedin.com/in/nguyeud/"><img class="contact-icons" src="../images/linkedin.png"></a>
-        <a href="https://github.com/nguyeud"><img class="contact-icons" src="../images/github.png"></a>
+    <footer class="py-2 bg-light mt-auto">
+        <div class="container">
+            <p class="m-0 text-center text-black">Copyright &copy; Uyen Nguyen 2022</p>
+        </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
 </body>
 </html>
