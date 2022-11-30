@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    /* font-family: 'Roboto Mono', monospace; */
+}
+
+#calc-body {
+    background-color: rgb(232, 233, 217);
+}
