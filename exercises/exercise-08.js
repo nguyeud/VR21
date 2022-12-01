@@ -29,13 +29,7 @@ const printDay = (num) => {
 console.log(printDay(4));       // "Wednesday"
 console.log(printDay(41));      // undefined
 
-const lastElement = (lst) => {
-    if (lst.length === 0) {
-        return undefined;
-    } else {
-        return lst[lst.length - 1];
-    }
-}
+const lastElement = (lst) => {lst[lst.length - 1]};
 console.log(lastElement([1,2,3,4]));     // 4
 console.log(lastElement([]));            // undefined
 
