@@ -1,3 +1,5 @@
+// Exercise 8
+
 const difference = (num1, num2) => num2 - num1;
 console.log(difference(2, 2));      // 0
 console.log(difference(0, 2));      // -2

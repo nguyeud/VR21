@@ -1,3 +1,5 @@
+// Exercise 7
+
 // Primitives
 let firstName = "Uyen";
 
