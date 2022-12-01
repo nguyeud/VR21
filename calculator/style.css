@@ -35,7 +35,7 @@ body {
 }
 
 #container-display {
-    padding: 2rem 0;
+    padding: 3rem 0;
 }
 
 #display {
@@ -45,7 +45,7 @@ body {
 }
 
 #container-button {
-    height: calc(60rem - (6rem*2) - 6rem - (2*2rem));
+    height: calc(60rem - (6rem*2) - 6rem - (2*3rem));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
