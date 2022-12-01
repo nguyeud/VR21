@@ -69,7 +69,7 @@ console.log(singleLetterCount("Rithm School", "o"));        // 2
 const multipleLetterCount = (str) => {
     let map = new Map();
     
-    for(const s of str) {
+    for(const s of str.toLowerCase()) {
         if (!map.has(s)) {
             map.set(s, 1);
         } else {
@@ -105,7 +105,21 @@ console.log(arrayManipulation([1,2,3], "add", "beginning", 20));        // [20, 
 console.log(arrayManipulation([1,2,3], "add", "end", 20));              // [1, 2, 3, 20]
 
 const isPalindrome = (str) => {
+    if (str.length % 2 === 0) {     // even
+        for (let i = 0; i < str.length / 2; i++) {
+            if (str[i] !== str[str.length - (i + 1)]) {
+                return false;
+            }
+        }
+    } else {                        // odd
+        for (let i = 0; i < (str.length / 2) - 1; i++) {
+            if (str[i] !== str[str.length - (i + 1)]) {
+                return false;
+            }
+        }
+    }
 
+    return true;
 }
 console.log(isPalindrome("testing"));       // false
 console.log(isPalindrome("tacocat"));       // true
