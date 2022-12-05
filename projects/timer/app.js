@@ -45,6 +45,5 @@ function reset() {
     document.querySelector("#minutes").innerText = "0" + counterMinute.toString();;
     document.querySelector("#seconds").innerText = "0" + counterSecond.toString();;
 
-    clearInterval(timerId);
-    timerId = null;
+    stop();
 }
