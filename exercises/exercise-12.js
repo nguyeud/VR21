@@ -40,8 +40,8 @@ const orderedListThird = orderedList.querySelector(".third");
 container.append("Hello!");
 
 const footer = document.querySelector(".footer");
-footer.setAttribute("class", "main");
-footer.removeAttribute("class", "main");
+footer.classList.add("main");
+footer.classList.remove("main");
 
 const unorderedList = document.querySelector("ul");
 const listElement = document.createElement("li");
