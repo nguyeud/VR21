@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+        html { 
+            font-family: 'Roboto', sans-serif;
+            font-size: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+        }
+
+        /* SECTION: NAVBAR */
+        navbar {
+            background-color: #f7f8f9;
+            padding: 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+        }
+
+        /* FORM */
+        #form-meme {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-input {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        label {
+            font-size: 1.4rem;
+            width: 14rem;
+        }
+
+        input {
+            width: calc(100% - 20rem);
+            height: 2rem;
+            padding: 1.5rem 1rem;
+            border: 1px solid #dcdcdc;
+            border-radius: .75rem;
+        }
+
+        button {
+            color: #ffffff;
+            width: 8rem;
+            height: 4rem;
+            background-color: #3579f6;
+            border: 2px solid #3579f6;
+            border-radius: .75rem;
+            transition: background-color .5s;
+        }
+
+        button:hover {
+            cursor: pointer;
+            color: #000000;
+            background-color: transparent;
+        }
+
+        /* SECTION: MAIN */
+        main {
+            padding: 2rem 4rem;
+        }
+
+        #cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-around;
+        }
+
+        .card-container {
+            position: relative;
+        }
+
+        img {
+            width: 40rem;
+            height: auto;
+            max-height: 30rem;
+            object-fit: contain;
+            border-radius: 1rem;
+        }
+
+        .text-top {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+        }
+
+        .text-bottom {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+        }
+
+        .meme-text {
+            font-size: 3rem;
+            color: white;
+            font-weight: 700;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: black;
+        }
+
+        /* DELETE */
+        .remove-container {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(225, 0, 0, .5);
+            transition: background-color .25s;
+            border-radius: 1rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-container:hover {
+            cursor: pointer;
+            background-color: rgba(225, 0, 0, .75);
+        }
+
+        .delete-icon {
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 500;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body>
+    <navbar>
+        <h1 id="website-title">Meme Generator</h1>
+        <h2>Fill out the form to start creating memes!</h2>
+        <form id="form-meme">
+            <div class="form-input">
+                <label for="form-image">Image URL</label>
+                <input type="text" id="form-image" placeholder="What's the URL for your meme image?" required>
+            </div>
+            <div class="form-input">
+                <label for="form-text-top">Text on Top</label>
+                <input type="text" id="form-text-top" placeholder="(Optional) What text do you want at the top of the meme?">
+            </div>
+            <div class="form-input">
+                <label for="form-text-bottom">Text on Bottom</label>
+                <input type="text" id="form-text-bottom" placeholder="(Optional) What text do you want at the bottom of the meme?">
+            </div>
+            <button type="submit" id="button-create">Create</button>
+        </form>
+    </navbar>
+    <main>
+        <section id="cards">
+            <div class="card">
+                <div class="card-container" id="sponge">
+                    <p class="meme-text text-top">SPONGEBOB</p>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpreview.redd.it%2Fno9er67gwuu11.jpg%3Fauto%3Dwebp%26s%3D94dec9c624c5f097444fca3e2f47c737994ae513&f=1&nofb=1&ipt=19b4786fc2ab6987f54775f8f3389364aac09d684887393a7bb3f48e63af3ddf&ipo=images">
+                    <p class="meme-text text-bottom">SQUAREPANTS</p>
+                    <div class="remove-container">
+                        <p class="delete-icon">x</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-container">
+                    <p class="meme-text text-top">Coding</p>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcomicsandmemes.com%2Fwp-content%2Fuploads%2Fblank-meme-template-080-crying-cat.jpg&f=1&nofb=1&ipt=9175480cf81b2e1c43fdfad87c026310b2617e0113bc4edc9f845faeaeb427c8&ipo=images">
+                    <p class="meme-text text-bottom">Hurts</p>
+                    <div class="remove-container">
+                        <p class="delete-icon">x</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-container">
+                    <p class="meme-text text-top">Doge</p>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fbarkpost-assets.s3.amazonaws.com%2Fwp-content%2Fuploads%2F2013%2F11%2FplainDoge.jpg&f=1&nofb=1&ipt=939206c688bfa5a54769e10712f671666db6feb41e32cd9ff30add46e674fb47&ipo=images">
+                    <p class="meme-text text-bottom">
+                    <p class="meme-text text-bottom">Coin</p>
+                    <div class="remove-container">
+                        <p class="delete-icon">x</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-container">
+                    <p class="meme-text text-top">Mike</p>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fcomicsandmemes.com%2Fwp-content%2Fuploads%2Fblank-meme-template-mike-wazowski-steve-carell.png%3Ffit%3D639%252C361%26ssl%3D1&f=1&nofb=1&ipt=6791655e34ce27097da23cf911a81f61740a3eac079e445559164fbd4585941e&ipo=images">
+                    <p class="meme-text text-bottom">In the Office</p>
+                    <div class="remove-container">
+                        <p class="delete-icon">x</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-container">
+                    <p class="meme-text text-top">I wanna</p>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmemes.co.in%2Fmemes%2Fupdate%2Fuploads%2F2021%2F04%2F881e4ed-2048x1152.jpg&f=1&nofb=1&ipt=cb7384081c2c311fd3a6ce53ffaf487a209424e03802a99d552c044a7fa7fe96&ipo=images">
+                    <p class="meme-text text-bottom">Sleep</p>
+                    <div class="remove-container">
+                        <p class="delete-icon">x</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-container">
+                    <p class="meme-text text-top">Super duper</p>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmakeameme.org%2Fmedia%2Ftemplates%2F250%2Fpoggers.jpg&f=1&nofb=1&ipt=364f6a5bd75ff294f3158b834158d74fcf6d6c4f43112b6c76b5aa970646950b&ipo=images">
+                    <p class="meme-text text-bottom">Poggies</p>
+                    <div class="remove-container">
+                        <p class="delete-icon">x</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-container">
+                    <p class="meme-text text-top">When your code doesn't work</p>
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Ff0%2Fd4%2F86%2Ff0d486b0e0e5e0ed8a74e29fa684f4e4.jpg&f=1&nofb=1&ipt=b9e47a91a041ade75facd6fea9207bccfcc06b8659f530f11fb2631c2327e32b&ipo=images">
+                    <p class="meme-text text-bottom">...</p>
+                    <div class="remove-container">
+                        <p class="delete-icon">x</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Create constants
+        const buttonCreate = document.querySelector("#button-create");
+        let buttonDelete = document.querySelectorAll(".delete-icon");       // Query delete button
+        const cards = document.querySelector("#cards");
+
+        buttonCreate.addEventListener("click", createCard);                 // Add event listener to "create" button
+        deleteCard();                                                       // For any pre-existing cards hardcoded in the HTML
+
+        // Create cards
+        function createCard() {
+            event.preventDefault();
+
+            let formImage = document.querySelector("#form-image").value;
+            let formTextTop = document.querySelector("#form-text-top").value;
+            let formTextBottom = document.querySelector("#form-text-bottom").value;
+
+            let contentCard =
+                `<div class="card">
+                    <div class="card-container">
+                        <p class="meme-text text-top">${formTextTop}</p>
+                        <img src="${formImage}">
+                        <p class="meme-text text-bottom">${formTextBottom}</p>
+                        <div class="remove-container">
+                            <p class="delete-icon">x</p>
+                        </div>
+                    </div>
+                </div>`;
+
+            cards.insertAdjacentHTML("beforeend", contentCard);
+            
+            // Update buttonDelete array
+            buttonDelete = document.querySelectorAll(".delete-icon");
+            
+            // Recalls the deleteCard function to add event listener for each button
+            deleteCard();
+
+            // Clears form after submission
+            clearForm();
+        }
+
+        // Clears the form
+        function clearForm() {
+            document.querySelector("#form-image").value = "";
+            document.querySelector("#form-text-top").value = "";
+            document.querySelector("#form-text-bottom").value = "";
+        }
+
+        // Delete cards
+        function deleteCard() {
+            buttonDelete.forEach(btn => {
+                btn.addEventListener("click", e => {
+                    e.target.parentNode.parentNode.parentNode.remove();
+                    buttonDelete = document.querySelectorAll(".delete-icon");
+                    console.log(buttonDelete);
+                });
+            })
+        }
+    </script>
+</body>
+
+</html>
