@@ -86,3 +86,25 @@ button {
     justify-content: center;
     align-items: center;
 }
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+}
+
+/* FOOTER */
+#btn-clear {
+    font-size: 1.4rem;
+    padding-top: 3rem;
+}
+
+#btn-clear:hover {
+    cursor: pointer;
+    color: #7f7f7f;
+}
