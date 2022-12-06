@@ -37,17 +37,24 @@ body {
 
 /* DISPLAY */
 #container-display {
-    padding: 3rem 0;
+    padding: 2rem 0;
 }
 
 #display {
     color: rgb(32, 48, 61);
     font-size: 6rem;
     text-align: right;
+    padding-bottom: 1rem;
+}
+
+#history {
+    color: rgb(96, 112, 125);
+    font-size: 3rem;
+    text-align: right;
 }
 
 #container-button {
-    height: calc(60rem - (6rem*2) - 6rem - (2*3rem));
+    height: calc(60rem - (6rem*2) - 6rem - (2*2rem) - 1rem);
     
     display: flex;
     flex-direction: column;
