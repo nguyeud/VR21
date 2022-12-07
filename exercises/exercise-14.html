@@ -68,7 +68,6 @@
             max-height: 200px;
             perspective: 100vw;
             border-radius: 1rem;
-            border: 1px solid lightgray;
         }
 
         .card-inner {
@@ -104,9 +103,10 @@
 <body>
     <h1>Memory Game</h1>
     <p class="text">Moves: <span class="text" id="moves-counter">0</span></p>
+    <p class="text">Best Score: <span class="text" id="score-counter"></span></p>
     <div id="cards-container">
         <div class="cards">
-            <div class="card downwards" id="0">
+            <div class="card" id="0">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card downwards" id="1">
+            <div class="card" id="1">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card downwards" id="2">
+            <div class="card" id="2">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card downwards" id="3">
+            <div class="card" id="3">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -153,7 +153,7 @@
             </div>
         </div>
         <div class="cards">
-            <div class="card downwards" id="5">
+            <div class="card" id="5">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card downwards" id="6">
+            <div class="card" id="6">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card downwards" id="7">
+            <div class="card" id="7">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -180,7 +180,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card downwards" id="8">
+            <div class="card" id="8">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card downwards" id="9">
+            <div class="card" id="9">
                 <div class="card-inner">
                     <div class="card-front">
                     </div>
@@ -218,10 +218,13 @@
         // Query elements
         const cards = document.querySelectorAll(".card-inner");
         const moves = document.querySelector("#moves-counter");
+        const score = document.querySelector("#score-counter");
         const reset = document.querySelector("#button-reset");
 
         let cardCompare = [];
         let movesCounter = 0;
+        let cardCounter = 0;
+        let scoreCounter;
 
         // Add an event listener for each card
         // When a card is "clicked", flip the card over and add to compare array
@@ -230,36 +233,63 @@
         // If they are different, flip back down
         cards.forEach(card => {
             card.addEventListener("click", e => {
-                // Flip card over
-                card.style.transform = "rotateY(180deg)";
+                if (!card.classList.contains("clicked")) {
+                    // Flip card over
+                    card.style.transform = "rotateY(180deg)";
+                    card.classList.add("clicked");
 
-                // Add card to array
-                cardCompare.push(card);
+                    // Add card to array
+                    cardCompare.push(card);
 
-                // Compare the cards
-                if (cardCompare.length == 2) {
-                    let cardOne = cardCompare[0].querySelector("img").getAttribute("src");
-                    let cardTwo = cardCompare[1].querySelector("img").getAttribute("src");
+                    // Compare the cards
+                    if (cardCompare.length == 2) {
+                        let cardOne = cardCompare[0].querySelector("img").getAttribute("src");
+                        let cardTwo = cardCompare[1].querySelector("img").getAttribute("src");
 
-                    // Increment move counter
-                    movesCounter++;
-                    moves.innerText = movesCounter;
-
-                    // If cards are the same, clear card compare array
-                    if (cardOne == cardTwo) {
-                        cardCompare = [];
-                    } else {
-                        // If cards are different, flip card over after 2000 ms
-                        setTimeout(function () {
+                        // If cards are the same, clear card compare array
+                        if (cardOne == cardTwo) {
                             for (const card of cardCompare) {
-                                card.style.transform = "";
+                                card.classList.remove("clicked");
                             }
 
-                            // Clear card compare array
                             cardCompare = [];
-                        }, 500);
-                    }
-                } 
+
+                            // Increment move counter
+                            movesCounter++;
+                            moves.innerText = movesCounter;
+
+                            // Increment card counter
+                            cardCounter++;
+                        } else {
+                            // If cards are different, flip card over after 2000 ms
+                            setTimeout(function () {
+                                for (const card of cardCompare) {
+                                    card.style.transform = "";
+                                    card.classList.remove("clicked");
+                                }
+
+                                // Clear card compare array
+                                cardCompare = [];
+
+                                movesCounter++;
+                                moves.innerText = movesCounter;
+                            }, 500);
+                        }
+                    } 
+                }
+
+                if (cardCounter == 5) {
+                    const msg = `<p class="text">You win!</p>`;
+                    document.querySelector("body").insertAdjacentHTML("beforeend", msg);
+
+                    if (score.innerText == "") {
+                        score.innerText = movesCounter;
+                        localStorage.setItem("memoryGameScore", movesCounter);
+                    } else if (movesCounter < localStorage.getItem("memoryGameScore")) {
+                        score.innerText = movesCounter;
+                        localStorage.setItem("memoryGameScore", movesCounter);
+                    } 
+                }
             })
         })
 
@@ -271,7 +301,6 @@
         function createGame() {
             // Index counter to make sure only two of the same cards are created
             let indexCounter = new Map();
-            console.log("reset");
 
             // Loop through the cards by id and populate the back of the card with image and color
             function createCard() {
@@ -313,6 +342,13 @@
         // On window load
         window.addEventListener("load", (e) => {
             createGame();
+
+            if (localStorage.getItem("memoryGameScore") === null) {
+                scoreCounter = 0;
+            } else {
+                scoreCounter = localStorage.getItem("memoryGameScore");
+                score.innerText = scoreCounter;
+            }
         })
     </script>
 </body>
