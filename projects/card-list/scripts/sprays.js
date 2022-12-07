@@ -1,79 +1,54 @@
 // Variables
 const buttonAdd = document.querySelector("#button-add");
 const row = document.querySelector(".row");
+let formImage;
+let formTitle;
+let image;
+let displayName;
 
-// Create unique ID
-const uid = function () {
-    return Date.now().toString(36) + Math.floor(Math.pow(10, 12) + Math.random() * 9*Math.pow(10, 12)).toString(36)
-}
+let counter;
 
-let buttonDelete;
+console.log(document.querySelector("#form-image").value);
 
-// Event listeners
-buttonAdd.addEventListener("click", addToLocalStorage);
+// url to be fetched
+const url = "https://valorant-api.com/v1/sprays";
 
-// Card constructor
-function Card(uid, image, title, text) {
-    this.uid = uid;
-    this.image = image;
-    this.title = title;
-    this.text = text;
-}
+// fetch data in API
+fetch(url)
+    .then((response) => {
+        // handle response
+        return response.json();
+    })
+    .then((data) => {
+        // import data in API
+        const API = data.data;
+        console.log("Array", API);
 
-// Takes the storage in localStorage and iterators through the array and create each card
-function displayCard(storage) {
-    for (let i = 0; i < storage.length; i++) {
-        let uid = storage[i]["uid"];
-        let image = storage[i]["image"];
-        let title = storage[i]["title"];
-        let text = storage[i]["text"];
+        for (const spray of API) {
+            image = spray["fullTransparentIcon"];
+            displayName = spray["displayName"];
 
-        createCard(uid, image, title, text);
-    }
-}
-
-function addToLocalStorage() {
-    // Query input from form
-    let formImage = document.querySelector("#form-image").value;
-    let formTitle = document.querySelector("#form-title").value;
-    let formText = document.querySelector("#form-textarea").value;
-
-    // Create new card object and push into storage array
-    let card = new Card(uid(), formImage, formTitle, formText);
-    storage.push(card);
-
-    // Re-set storage and counter keys in localStorage
-    window.localStorage.setItem("storage", JSON.stringify(storage));
-
-    // create HTML card and display on screen
-    createCard(uid, formImage, formTitle, formText);
-
-    // Updates the array of delete buttons upon creating cards
-    updateDeleteButtons();
-    deleteCard();
-}
-
-function deleteFromLocalStorage(uid) {
-    console.log("Deleted");
-
-    let parseData = JSON.parse(localStorage.getItem("storage"));
-    for (let i = 0; i < parseData.length; i++) {
-        if (parseData[i]["uid"] == uid) {
-            storage.splice(i, 1);
-            localStorage.setItem("storage", JSON.stringify(storage));
+            createCard(image, displayName);
         }
-    }
-}
+    });
+    
+// Create card
+buttonAdd.addEventListener("click", createCard);
 
-// Creates the card
-function createCard(uid, image, title, text) {
+function createCard(image, displayName) {
+    counter++;
+
+    if (document.querySelector("#form-image").value !== "") {
+        image = document.querySelector("#form-image").value;
+        displayName = document.querySelector("#form-title").value;
+    }
+
     let contentCard =
-    `<div class="col-md-3" id="${uid}">
-        <div class="card">
+    `<div class="col-md-3">
+        <div class="card" data-num="">
         <img src="${image}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">${title}</h5>
-            <p class="card-text">${text}</p>
+            <h5 class="card-title">${displayName}</h5>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#saveModal">
@@ -109,7 +84,7 @@ function createCard(uid, image, title, text) {
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary button-update" data-num="${uid}" data-bs-dismiss="modal">Save changes</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -135,7 +110,7 @@ function createCard(uid, image, title, text) {
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-danger button-delete" data-num="${uid}" data-bs-dismiss="modal">Confirm</button>
+                            <button type="button" class="btn btn-danger">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -146,39 +121,3 @@ function createCard(uid, image, title, text) {
 
     row.insertAdjacentHTML("beforeend", contentCard);
 }
-
-// Update array of delete buttons
-function updateDeleteButtons() {
-    buttonDelete = document.querySelectorAll(".button-delete");
-}
-
-// Adds event listeners to delete the card, update array if necessary
-function deleteCard() {
-    buttonDelete.forEach(btn => {
-        btn.addEventListener("click", e => {
-            let target = document.getElementById(e.target.getAttribute('data-num'));
-            target.remove();
-
-            deleteFromLocalStorage(e.target.getAttribute('data-num'));
-            updateDeleteButtons();
-        });
-    })
-}
-
-// On window load
-window.addEventListener("load", (e) => {
-    // If localStorage is null, then create storage array
-    // If localStorage is not null, then load localStorage storage
-    if (JSON.parse(window.localStorage.getItem("storage")) !== null) {
-        storage = JSON.parse(window.localStorage.getItem("storage"));
-        if (storage.length !== 0) {
-            displayCard(JSON.parse(window.localStorage.getItem("storage")));
- 
-            // Updates the array of delete buttons upon displaying cards
-            updateDeleteButtons();
-            deleteCard();
-        }
-    } else {
-        storage = [];
-    }
-})
