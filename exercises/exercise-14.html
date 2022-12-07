@@ -265,18 +265,13 @@
 
         // If reset button is clicked, clear move counter and flip all cards back over
         reset.addEventListener("click", e => {
-            movesCounter = 0;
-            moves.innerText = movesCounter;
-
-            for (const card of cards) {
-                card.style.transform = "";
-            }
+            location.reload(true);
         })
 
-        // On window load
-        window.addEventListener("load", (e) => {
+        function createGame() {
             // Index counter to make sure only two of the same cards are created
             let indexCounter = new Map();
+            console.log("reset");
 
             // Loop through the cards by id and populate the back of the card with image and color
             function createCard() {
@@ -313,6 +308,11 @@
             }
 
             createCard();
+        }
+
+        // On window load
+        window.addEventListener("load", (e) => {
+            createGame();
         })
     </script>
 </body>
