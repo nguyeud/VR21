@@ -191,7 +191,7 @@
         let buttonDelete = document.querySelectorAll(".delete-icon");               // Query delete button
         const cards = document.querySelector("#cards");
         let counter;                                                                // Initialize variable
-        let storage;
+        let storageMeme;
 
         buttonCreate.addEventListener("click", addToLocalStorage);                  // Add event listener to "create" button
 
@@ -229,8 +229,8 @@
 
             // Add card to localStorage
             let newCard = new Card(counter, formImage, formTextTop, formTextBottom);
-            storage.push(newCard);
-            window.localStorage.setItem("storage", JSON.stringify(storage));
+            storageMeme.push(newCard);
+            window.localStorage.setItem("storageMeme", JSON.stringify(storageMeme));
             window.localStorage.setItem("counter", counter);
 
             // create HTML card and display on screen
@@ -286,12 +286,12 @@
 
         // Remove card to local storage
         function deleteFromLocalStorage(id) {
-            let parseData = JSON.parse(localStorage.getItem("storage"));
+            let parseData = JSON.parse(localStorage.getItem("storageMeme"));
 
             for (let i = 0; i < parseData.length; i++) {
                 if (parseData[i]["counter"] == id) {
-                    storage.splice(i, 1);
-                    localStorage.setItem("storage", JSON.stringify(storage));
+                    storageMeme.splice(i, 1);
+                    localStorage.setItem("storageMeme", JSON.stringify(storageMeme));
                 }
             }
         }
@@ -300,10 +300,10 @@
         window.addEventListener("load", (e) => {
             // If localStorage is null, then create library array
             // If localStorage is not null, then load localStorage library
-            if (JSON.parse(window.localStorage.getItem("storage")) !== null) {
-                storage = JSON.parse(window.localStorage.getItem("storage"));
+            if (JSON.parse(window.localStorage.getItem("storageMeme")) !== null) {
+                storageMeme = JSON.parse(window.localStorage.getItem("storageMeme"));
             } else {
-                storage = [];
+                storageMeme = [];
             }
 
             // If counter doesn't exist in local storage, set to 0
@@ -315,9 +315,9 @@
             }
 
             // Load from localStorage if any
-            window.localStorage.setItem("storage", JSON.stringify(storage));
-            if (storage.length !== 0 || storage !== null) {
-                displayCard(JSON.parse(window.localStorage.getItem("storage")));
+            window.localStorage.setItem("storageMeme", JSON.stringify(storageMeme));
+            if (storageMeme.length !== 0 || storageMeme !== null) {
+                displayCard(JSON.parse(window.localStorage.getItem("storageMeme")));
 
                 buttonDelete = document.querySelectorAll(".delete-icon");
                 deleteCard();
