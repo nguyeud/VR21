@@ -204,6 +204,7 @@
         reset
     </button>
     <script>
+        // Array of colors and images for random selection
         const colors = ["#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF"];
         const images = 
             [
@@ -214,6 +215,7 @@
                 "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Ff6%2Fb2%2F95%2Ff6b295bfab512d419fdd09e5cdb29496.png&f=1&nofb=1&ipt=aa864486437a75f6876219464c0f62b04c5fe8f1f39b29736f297cf42b39a2b0&ipo=images"
             ];
 
+        // Query elements
         const cards = document.querySelectorAll(".card-inner");
         const moves = document.querySelector("#moves-counter");
         const reset = document.querySelector("#button-reset");
@@ -221,38 +223,47 @@
         let cardCompare = [];
         let movesCounter = 0;
 
+        // Add an event listener for each card
+        // When a card is "clicked", flip the card over and add to compare array
+        // If two cards have been flipped over, compare the card's image src to see if they are the same
+        // If they are the same, keep flipped up
+        // If they are different, flip back down
         cards.forEach(card => {
             card.addEventListener("click", e => {
+                // Flip card over
                 card.style.transform = "rotateY(180deg)";
 
+                // Add card to array
                 cardCompare.push(card);
 
+                // Compare the cards
                 if (cardCompare.length == 2) {
                     let cardOne = cardCompare[0].querySelector("img").getAttribute("src");
                     let cardTwo = cardCompare[1].querySelector("img").getAttribute("src");
 
+                    // Increment move counter
                     movesCounter++;
                     moves.innerText = movesCounter;
 
+                    // If cards are the same, clear card compare array
                     if (cardOne == cardTwo) {
-                        cardCompare.forEach(card => {
-                            card.classList.add("match");
-                        })
-
                         cardCompare = [];
                     } else {
+                        // If cards are different, flip card over after 2000 ms
                         setTimeout(function () {
                             for (const card of cardCompare) {
                                 card.style.transform = "";
                             }
 
+                            // Clear card compare array
                             cardCompare = [];
-                        }, 1000);
+                        }, 500);
                     }
                 } 
             })
         })
 
+        // If reset button is clicked, clear move counter and flip all cards back over
         reset.addEventListener("click", e => {
             movesCounter = 0;
             moves.innerText = movesCounter;
