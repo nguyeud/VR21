@@ -55,19 +55,19 @@ function displayCard() {
 // This is called when the form is submitted through the "Add" modal
 function addToLocalStorage() {
     // Query input from form
-    let formImage = document.querySelector("#form-add-image").value;
-    let formTitle = document.querySelector("#form-add-title").value;
-    let formText = document.querySelector("#form-add-textarea").value;
+    let img = document.querySelector("#form-add-image").value;
+    let title = document.querySelector("#form-add-title").value;
+    let text = document.querySelector("#form-add-textarea").value;
 
     // Create new card object and push into storage array
-    let card = new Card(uid(), formImage, formTitle, formText);
+    let card = new Card(uid(), img, title, text);
     storage.push(card);
 
     // Re-set storage and counter keys in localStorage
     window.localStorage.setItem("storageCardListIndex", JSON.stringify(storage));
 
     // create HTML card and display on screen
-    createCard(uid, formImage, formTitle, formText);
+    createCard(uid, img, title, text);
 
     // Updates the array of delete buttons upon creating cards
     updateDeleteButtons();
@@ -227,17 +227,31 @@ function saveCard() {
             let uid = e.target.closest(".col-md-3").getAttribute('data-id');
             let target = e.target.closest(".col-md-3");
 
-            // Update the values of the card
             target.querySelector(".card-img-top").setAttribute("src", document.getElementById(`${uid}-form-update-image`).value);
             target.querySelector(".card-title").innerText = document.getElementById(`${uid}-form-update-title`).value;
             target.querySelector(".card-text").innerText = document.getElementById(`${uid}-form-update-textarea`).value;
+
+            // Update the values of the card
+            let image = target.querySelector(".card-img-top").getAttribute("src");
+            let title = target.querySelector(".card-title").innerText
+            let text = target.querySelector(".card-text").innerText;
+
+            updateToLocalStorage(uid, image, title, text);
         });
     })
 }
 
 // Updates item from localStorage using uid (data-id)
-function updateToLocalStorage(uid) {
-    
+function updateToLocalStorage(uid, image, title, text) {
+    for (let i = 0; i < storage.length; i++) {
+        if (storage[i]["uid"] == uid) {
+            storage[i]["image"] = image;
+            storage[i]["title"] = title;
+            storage[i]["text"] = text;
+
+            localStorage.setItem("storageCardListIndex", JSON.stringify(storage));
+        }
+    }
 }
 
 // Update array of save buttons
