@@ -5,8 +5,304 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Game</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+        *, html {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 10px;
+        }
+
+        body {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .text {
+            font-size: 2rem;
+        }
+
+        button {
+            border: 1px solid lightgray;
+            border-radius: 1rem;
+
+            width: 8rem;
+            height: 4rem;
+        }
+
+        img {
+            width: calc(100vw / 7);
+            height: calc(100vw / 7);
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: scale-down;
+        }
+
+        #cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+        }
+
+        .card {
+            width: calc(100vw / 7);
+            height: calc(100vw / 7);
+            max-width: 200px;
+            max-height: 200px;
+            perspective: 100vw;
+            border-radius: 1rem;
+            border: 1px solid lightgray;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .card-front {
+            border-radius: 1rem;
+            border: 1px solid lightgray;
+        }
+
+        .card-back {
+            border-radius: 1rem;
+            border: 1px solid lightgray;
+
+            transform: rotateY(180deg);
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Memory Game</h1>
+    <p class="text">Moves: <span class="text" id="moves-counter">0</span></p>
+    <div id="cards-container">
+        <div class="cards">
+            <div class="card downwards" id="0">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="1">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="2">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="3">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="4">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card downwards" id="5">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="6">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="7">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="8">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card downwards" id="9">
+                <div class="card-inner">
+                    <div class="card-front">
+                    </div>
+                    <div class="card-back">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="text" id="button-reset">
+        reset
+    </button>
+    <script>
+        const colors = ["#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF"];
+        const images = 
+            [
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn140.picsart.com%2F268788490007211.png&f=1&nofb=1&ipt=ebb66eb40ab94ff9b6926b35179cd61bdd4a56fdc634a87bc61af9ed7b54bc00&ipo=images",
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn130.picsart.com%2F308239248772211.png%3Fr1024x1024&f=1&nofb=1&ipt=8aa4298842c48d56e4a2fe95310b363fbf16edd49333971757e11b0e7743bb31&ipo=images",
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F47%2F43%2F7b%2F47437bba1ee4a799205636ab445333e4.png&f=1&nofb=1&ipt=4b2d8da654a942a5d750cefb648ca4090b0fa0fd02719000fae9dfc8e98b91f7&ipo=images",
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fcb%2F72%2F6f%2Fcb726f5b8dd8fccc2d5ffc7a9f23d9d1.png&f=1&nofb=1&ipt=85197fd6787146b7d86ffdc8688b95770afb7e22620a51ce53ecb997dc8a685f&ipo=images",
+                "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Ff6%2Fb2%2F95%2Ff6b295bfab512d419fdd09e5cdb29496.png&f=1&nofb=1&ipt=aa864486437a75f6876219464c0f62b04c5fe8f1f39b29736f297cf42b39a2b0&ipo=images"
+            ];
+
+        const cards = document.querySelectorAll(".card-inner");
+        const moves = document.querySelector("#moves-counter");
+        const reset = document.querySelector("#button-reset");
+
+        let cardCompare = [];
+        let movesCounter = 0;
+
+        cards.forEach(card => {
+            card.addEventListener("click", e => {
+                card.style.transform = "rotateY(180deg)";
+
+                cardCompare.push(card);
+
+                if (cardCompare.length == 2) {
+                    let cardOne = cardCompare[0].querySelector("img").getAttribute("src");
+                    let cardTwo = cardCompare[1].querySelector("img").getAttribute("src");
+
+                    movesCounter++;
+                    moves.innerText = movesCounter;
+
+                    if (cardOne == cardTwo) {
+                        cardCompare.forEach(card => {
+                            card.classList.add("match");
+                        })
+
+                        cardCompare = [];
+                    } else {
+                        setTimeout(function () {
+                            for (const card of cardCompare) {
+                                card.style.transform = "";
+                            }
+
+                            cardCompare = [];
+                        }, 1000);
+                    }
+                } 
+            })
+        })
+
+        reset.addEventListener("click", e => {
+            movesCounter = 0;
+            moves.innerText = movesCounter;
+
+            for (const card of cards) {
+                card.style.transform = "";
+            }
+        })
+
+        // On window load
+        window.addEventListener("load", (e) => {
+            // Index counter to make sure only two of the same cards are created
+            let indexCounter = new Map();
+
+            // Loop through the cards by id and populate the back of the card with image and color
+            function createCard() {
+                for (let i = 0; i < 10; i++) {
+                    let card = document.getElementById(i.toString());
+                    let cardFront = card.querySelector(".card-front");
+                    let cardBack = card.querySelector(".card-back");
+                    let img = card.querySelector("img");
+
+                    while (img.getAttribute("src") == "") {
+                        let index = randomIndex();
+                        populateCard(index, cardBack, img);
+                    }
+                }
+            }
+
+            // Gets a random index from 0 to array length
+            function randomIndex() {
+                return Math.floor(Math.random() * images.length);
+            }
+
+            // Receives information from createCard(), checks if the index (image/color used) is over 2
+            // if index is good, then populate the card
+            function populateCard(index, card, img) {
+                if (!indexCounter.has(index)) {
+                    img.setAttribute("src", images[index]);
+                    card.style.backgroundColor = colors[index];
+                    indexCounter.set(index, 1);
+                } else if (indexCounter.get(index) == 1) {
+                    img.setAttribute("src", images[index]);
+                    card.style.backgroundColor = colors[index];
+                    indexCounter.set(index, 2);
+                } 
+            }
+
+            createCard();
+        })
+    </script>
 </body>
 </html>
