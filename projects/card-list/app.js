@@ -65,6 +65,8 @@ function validateSubmission() {
         
         // Clear the form used to add cards
         clearAddForm();
+
+        // buttonAdd.removeAttribute("data-bs-dismiss", "modal");
     }
 }
 
