@@ -1,5 +1,6 @@
 // VARIABLES
 // Constants
+const modalAdd = new bootstrap.Modal(document.getElementById("addModal"));
 const buttonAdd = document.querySelector("#button-add");
 const row = document.querySelector(".row");
 
@@ -59,14 +60,11 @@ function validateSubmission() {
     let text = document.querySelector("#form-add-textarea").value;
 
     if (img !== "" && title !== "" && price !== "" && text !== "") {
-        buttonAdd.setAttribute("data-bs-dismiss", "modal");       
-        
+        modalAdd.hide();
         addToLocalStorage(img, title, price, text);
-        
+            
         // Clear the form used to add cards
         clearAddForm();
-
-        // buttonAdd.removeAttribute("data-bs-dismiss", "modal");
     }
 }
 
@@ -100,7 +98,7 @@ function addToLocalStorage(img, title, price, text) {
 // Creates the card using template literal and information passed from addToLocalStorage
 function createCard(uid, image, title, price, text) {
     let contentCard =
-    `<div class="col-md-3" data-id="${uid}">
+    `<div class="mt-4 col-sm-4 col-lg-3" data-id="${uid}">
         <div class="card">
         <img src="${image}" class="card-img-top" alt="...">
         <div class="card-body">
