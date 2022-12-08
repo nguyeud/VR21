@@ -21,12 +21,15 @@ fetch(url)
                 createCard(image, name, uuid);
             }
         }
+
+        loader.remove();
     })
     .catch(error => {
         console.log("Something went wrong...", error);
     })
 
 const row = document.querySelector(".row");
+const loader = document.querySelector("#loader");
 
 function createCard(image, name, uuid) {
     const cardHTML = 
