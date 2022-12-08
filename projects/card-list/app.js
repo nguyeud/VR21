@@ -18,15 +18,15 @@ const uid = function () {
 // EVENT LISTENERS
 // When the "Save changes" button in the "Add" modal is clicked, callback the addToLocalStorage function,
 // which adds the information inputted to local storage and creates a card to display on webpage
-buttonAdd.addEventListener("click", addToLocalStorage);
-
+buttonAdd.addEventListener("click", validateSubmission);
 
 // CONSTRUCTORS
 // Card
-function Card(uid, image, title, text) {
+function Card(uid, image, title, price, text) {
     this.uid = uid;
     this.image = image;
     this.title = title;
+    this.price = price;
     this.text = text;
 }
 
@@ -44,30 +44,43 @@ function displayCard() {
         let uid = item["uid"];
         let image = item["image"];
         let title = item["title"];
+        let price = item["price"];
         let text = item["text"];
 
-        createCard(uid, image, title, text);
+        createCard(uid, image, title, price, text);
+    }
+}
+
+function validateSubmission() {
+    // Query input from form
+    let img = document.querySelector("#form-add-image").value;
+    let title = document.querySelector("#form-add-title").value;
+    let price = document.querySelector("#form-add-price").value;
+    let text = document.querySelector("#form-add-textarea").value;
+
+    if (img !== "" && title !== "" && price !== "" && text !== "") {
+        buttonAdd.setAttribute("data-bs-dismiss", "modal");       
+        
+        addToLocalStorage(img, title, price, text);
+        
+        // Clear the form used to add cards
+        clearAddForm();
     }
 }
 
 // Takes the information inputted into the "Add" modal and uses the Card constructor to create an object,
 // then, pushes the information into the storage array and sets the localStorage item
 // This is called when the form is submitted through the "Add" modal
-function addToLocalStorage() {
-    // Query input from form
-    let img = document.querySelector("#form-add-image").value;
-    let title = document.querySelector("#form-add-title").value;
-    let text = document.querySelector("#form-add-textarea").value;
-
+function addToLocalStorage(img, title, price, text) {
     // Create new card object and push into storage array
-    let card = new Card(uid(), img, title, text);
+    let card = new Card(uid(), img, title, price, text);
     storage.push(card);
 
     // Re-set storage and counter keys in localStorage
     window.localStorage.setItem("storageCardListIndex", JSON.stringify(storage));
 
     // create HTML card and display on screen
-    createCard(uid, img, title, text);
+    createCard(uid, img, title, price, text);
 
     // Updates the array of delete buttons upon creating cards
     updateDeleteButtons();
@@ -83,13 +96,14 @@ function addToLocalStorage() {
 }
 
 // Creates the card using template literal and information passed from addToLocalStorage
-function createCard(uid, image, title, text) {
+function createCard(uid, image, title, price, text) {
     let contentCard =
     `<div class="col-md-3" data-id="${uid}">
         <div class="card">
         <img src="${image}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">${title}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${price}</h6>
             <p class="card-text">${text}</p>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary button-update" data-bs-toggle="modal"
@@ -109,15 +123,20 @@ function createCard(uid, image, title, text) {
                         <div class="modal-body">
                             <form id="${uid}-form-update">
                                 <div class="mb-3">
-                                    <label for="form-image" class="form-label">Image</label>
+                                    <label for="${uid}-form-update-image" class="form-label">Image</label>
                                     <input type="input" class="form-control" id="${uid}-form-update-image">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="form-title" class="form-label">Title</label>
+                                    <label for="${uid}-form-update-title" class="form-label">Title</label>
                                     <input type="input" class="form-control" id="${uid}-form-update-title">
                                 </div>
+                                <label for="form-update-price" class="form-label">Price</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" class="form-control" id="form-update-price">
+                                </div>
                                 <div class="mb-3">
-                                    <label for="form-textarea" class="form-label">Description</label>
+                                    <label for="${uid}-form-update-textarea" class="form-label">Description</label>
                                     <textarea class="form-control" id="${uid}-form-update-textarea"
                                         rows="3"></textarea>
                                 </div>
@@ -163,9 +182,6 @@ function createCard(uid, image, title, text) {
 
     // Add template beforeend on .row container
     row.insertAdjacentHTML("beforeend", contentCard);
-
-    // Clear the form used to add cards
-    clearAddForm();
 }
 
 // Adds event listeners to delete the card, update array if necessary
@@ -210,6 +226,7 @@ function populateUpdateModalForm() {
             // Pre-populate the values of the inputs with the values in the card
             document.getElementById(`${uid}-form-update-image`).value = target.querySelector(".card-img-top").getAttribute("src");
             document.getElementById(`${uid}-form-update-title`).value = target.querySelector(".card-title").innerText;
+            document.getElementById(`${uid}-form-update-price`).value = target.querySelector(".card-subtitle").innerText;
             document.getElementById(`${uid}-form-update-textarea`).value = target.querySelector(".card-text").innerText;
         });
     })
@@ -229,11 +246,13 @@ function saveCard() {
 
             target.querySelector(".card-img-top").setAttribute("src", document.getElementById(`${uid}-form-update-image`).value);
             target.querySelector(".card-title").innerText = document.getElementById(`${uid}-form-update-title`).value;
+            target.querySelector(".card-subtitle").innerText = document.getElementById(`${uid}-form-update-price`).value;
             target.querySelector(".card-text").innerText = document.getElementById(`${uid}-form-update-textarea`).value;
 
             // Update the values of the card
             let image = target.querySelector(".card-img-top").getAttribute("src");
             let title = target.querySelector(".card-title").innerText
+            let price = target.querySelector(".card-subtitle").innerText
             let text = target.querySelector(".card-text").innerText;
 
             updateToLocalStorage(uid, image, title, text);
@@ -247,6 +266,7 @@ function updateToLocalStorage(uid, image, title, text) {
         if (storage[i]["uid"] == uid) {
             storage[i]["image"] = image;
             storage[i]["title"] = title;
+            storage[i]["price"] = price;
             storage[i]["text"] = text;
 
             localStorage.setItem("storageCardListIndex", JSON.stringify(storage));
@@ -263,6 +283,7 @@ function updateSaveButtons() {
 function clearAddForm() {
     document.querySelector("#form-add-image").value = "";
     document.querySelector("#form-add-title").value = "";
+    document.querySelector("#form-add-price").value = "";
     document.querySelector("#form-add-textarea").value = "";
 }
 
