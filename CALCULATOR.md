@@ -22,7 +22,3 @@
     - Add 4 columns per row
     - Add 1 button to each row x column
     - Add rounded borders to buttons
-
-
-
-## Building Functionality
