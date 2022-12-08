@@ -130,10 +130,10 @@ function createCard(uid, image, title, price, text) {
                                     <label for="${uid}-form-update-title" class="form-label">Title</label>
                                     <input type="input" class="form-control" id="${uid}-form-update-title">
                                 </div>
-                                <label for="form-update-price" class="form-label">Price</label>
+                                <label for="${uid}-form-update-price" class="form-label">Price</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
-                                    <input type="text" class="form-control" id="form-update-price">
+                                    <input type="text" class="form-control" id="${uid}-form-update-price">
                                 </div>
                                 <div class="mb-3">
                                     <label for="${uid}-form-update-textarea" class="form-label">Description</label>
@@ -220,8 +220,8 @@ function populateUpdateModalForm() {
     buttonUpdate.forEach(btn => {
         btn.addEventListener("click", e => {
             // Get data-id of card & card element
-            let uid = e.target.closest(".col-md-3").getAttribute('data-id');
-            let target = e.target.closest(".col-md-3");
+            let uid = e.target.closest(".mt-4").getAttribute('data-id');
+            let target = e.target.closest(".mt-4");
 
             // Pre-populate the values of the inputs with the values in the card
             document.getElementById(`${uid}-form-update-image`).value = target.querySelector(".card-img-top").getAttribute("src");
@@ -241,8 +241,8 @@ function saveCard() {
     buttonSave.forEach(btn => {
         btn.addEventListener("click", e => {
             // Get data-id of card & card element
-            let uid = e.target.closest(".col-md-3").getAttribute('data-id');
-            let target = e.target.closest(".col-md-3");
+            let uid = e.target.closest(".mt-4").getAttribute('data-id');
+            let target = e.target.closest(".mt-4");
 
             target.querySelector(".card-img-top").setAttribute("src", document.getElementById(`${uid}-form-update-image`).value);
             target.querySelector(".card-title").innerText = document.getElementById(`${uid}-form-update-title`).value;
@@ -255,13 +255,13 @@ function saveCard() {
             let price = target.querySelector(".card-subtitle").innerText
             let text = target.querySelector(".card-text").innerText;
 
-            updateToLocalStorage(uid, image, title, text);
+            updateToLocalStorage(uid, image, title, price, text);
         });
     })
 }
 
 // Updates item from localStorage using uid (data-id)
-function updateToLocalStorage(uid, image, title, text) {
+function updateToLocalStorage(uid, image, title, price, text) {
     for (let i = 0; i < storage.length; i++) {
         if (storage[i]["uid"] == uid) {
             storage[i]["image"] = image;
