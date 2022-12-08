@@ -1,4 +1,3 @@
-// Exercise 10
 const people = ["Greg", "Mary", "Devon", "James"];
 
 // Remove "Greg"
