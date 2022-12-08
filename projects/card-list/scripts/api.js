@@ -10,7 +10,6 @@ fetch(url)
     .then(data => {
         // Import data in API
         const API = data.data;
-        console.log("Array", API);
 
         for (const item of API) {
             if (item["fullTransparentIcon"] !== null) {
