@@ -189,8 +189,8 @@ function deleteCard() {
     buttonDelete.forEach(btn => {
         btn.addEventListener("click", e => {
             // Get data-id of card & card element
-            let uid = e.target.closest(".col-md-3").getAttribute('data-id');
-            let target = e.target.closest(".col-md-3");
+            let uid = e.target.closest(".mt-4").getAttribute('data-id');
+            let target = e.target.closest(".mt-4");
 
             // Remove card element in DOM
             target.remove();
