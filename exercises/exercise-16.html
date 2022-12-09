@@ -22,12 +22,25 @@
     <header>
         <nav class="navbar bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand">Unsplash API</a>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                        id="input-search">
-                    <button class="btn btn-outline-success" type="submit" id="button-search">Search</button>
-                </form>
+                <a class="navbar-brand" href="#">Unsplash API</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="exercise-16-favorites.html">Favorites</a>
+                      </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            id="input-search">
+                        <button class="btn btn-outline-success" type="submit" id="button-search">Search</button>
+                    </form>
+                  </div>
             </div>
         </nav>
     </header>
@@ -53,6 +66,9 @@
         const searchButton = document.querySelector("#button-search");
         const searchInput = document.querySelector("#input-search");
 
+        let buttonFavorite;
+        let favorites;
+
         searchButton.addEventListener("click", getSearchInput);
 
         function getSearchInput() {
@@ -61,41 +77,80 @@
             let input = searchInput.value.split(" ");
             let query = input.join("-");
 
-            fetchSearch(query);
+            if (window.localStorage.getItem(`"UnplashAPI-${query}"`) !== null) {
+                retreiveFromLocalStorage(query);
+            } else {
+                fetchSearch(query);
+            }
         }
 
         function fetchSearch(query) {
             clearPage();
+            const storage = [];
 
-            fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=100&client_id=${client_id}`)
+            fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=20&client_id=${client_id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     const API = data.results;
 
                     for (const item of API) {
+                        const uid = item["id"];
                         const image = item["urls"]["regular"];
                         const user = item["user"]["name"];
                         const profile = item["user"]["links"]["html"];
 
-                        createCard(image, user, profile);
+                        addToLocalStorage(query, storage, uid, image, user, profile);
+                        createCard(uid, image, user, profile);
                     }
                 });
+
+            updateFavoriteButtons();
+            favoriteCard();
         }
 
-        function createCard(image, user, profile) {
+        function createCard(uid, image, user, profile) {
             let cardHTML =
-                `<div class="col-sm-6 col-lg-4 mb-4">
+                `<div class="col-sm-6 col-lg-4 mb-4" data-id="${uid}">
                     <div class="card">
-                        <img src="${image}" class="card-img-top card-img" alt="${name}"">
+                        <img src="${image}" class="card-img-top card-img">
                         <div class="card-body">
                             <p class="card-text">
-                                Photo by <a href="${profile}">${user}</a> on <a href="https://unsplash.com/">Unsplash</a>
+                                Photo by <a class="card-profile" href="${profile}"><span class="card-user">${user}</span></a> on <a href="https://unsplash.com/">Unsplash</a>
                             </p>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${uid}-Modal">
+                                View
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="${uid}-Modal" tabindex="-1" aria-labelledby="${uid}-ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="${uid}-ModalLabel">Photo by <a href="${profile}">${user}</a> on <a href="https://unsplash.com/">Unsplash</a></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="${image}" width="100%">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary button-favorite" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-danger">♡</button>
                         </div>
                     </div>
                 </div>`;
 
             row.insertAdjacentHTML("beforeend", cardHTML);
+        }
+
+        function Card(uid, image, user, profile) {
+            this.uid = uid,
+            this.image = image,
+            this.user = user,
+            this.profile = profile
         }
 
         function clearPage() {
@@ -106,8 +161,81 @@
             }
         }
 
+        function addToLocalStorage(query, storage, uid, image, user, profile) {
+            console.log("Added to local storage");
+
+            let card = new Card(uid, image, user, profile);
+
+            storage.push(card);
+
+            window.localStorage.setItem(`"UnplashAPI-${query}"`, JSON.stringify(storage));
+        }
+
+        function retreiveFromLocalStorage(query) {
+            console.log("Retreive from local storage");
+
+            const storage = JSON.parse(window.localStorage.getItem(`"UnplashAPI-${query}"`));
+
+            clearPage();
+
+            for (const item of storage) {
+                const uid = item["uid"];
+                const image = item["image"];
+                const user = item["user"];
+                const profile = item["profile"];
+
+                createCard(uid, image, user, profile);
+            }
+
+            updateFavoriteButtons();
+            favoriteCard();
+        }
+
+        function favoriteCard() {
+            buttonFavorite.forEach(btn => {
+                btn.addEventListener("click", e => {
+                    let uid = e.target.closest("col-sm-6").getAttribute('data-id');
+                    let target = e.target.closest("col-sm-6");
+
+                    let image = target.querySelector(".card-img-top").getAttribute("src");
+                    let user = target.querySelector(".card-user").innerText
+                    let profile = target.querySelector(".card-profile").getAttribute("href");
+
+                    console.log(image, user, profile);
+
+                    updateFavoriteButtons();
+                    updateFavoriteButton();
+                });
+            })
+        }
+
+        function updateFavoriteButtons() {
+            buttonFavorite = document.querySelectorAll(".button-favorite");
+        }
+
+        function updateFavoriteButton() {
+
+        }
+
         window.addEventListener("load", (e) => {
-            fetchSearch("coding");
+            const firstTime = JSON.parse(window.localStorage.getItem(`"UnplashAPI-sunset"`));
+
+            // Check if first time on site
+            if (firstTime === null) {
+                fetchSearch("sunset");
+            } else {
+                retreiveFromLocalStorage("sunset");
+            }
+
+            // Check if favorites exist
+            if (JSON.parse(window.localStorage.getItem("UnplashAPI-favorites")) !== null) {
+                favorites = JSON.parse(window.localStorage.getItem("UnplashAPI-favorites"));
+            } else {
+                favorites = [];
+            }
+
+            updateFavoriteButtons();
+            favoriteCard();
         })
     </script>
 </body>
