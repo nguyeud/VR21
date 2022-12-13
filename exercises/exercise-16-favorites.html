@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - API (Unsplash) Favorites</title>
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .card-img {
+            height: 20rem;
+            width: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Unsplash API</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="exercise-16.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Favorites</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="my-4">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </main class="mb-4">
+    <footer>
+        <!-- Place footer here -->
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+    <script>
+        const row = document.querySelector(".row");
+
+        function displayCard() {
+            for (const item of favorites) {
+                let uid = item["uid"];
+                let image = item["image"];
+                let user = item["user"];
+                let profile = item["profile"];
+                let description = item["description"];
+
+                createCard(uid, image, user, profile, description);
+            }
+        }
+
+        function determineButtonColor(uid) {
+            for (const item of favorites) {
+                if (item["uid"] == uid) {
+                    return "btn-danger";
+                } 
+            }
+
+            return "btn-light";
+        }
+
+        function createCard(uid, image, user, profile, description) {
+            let favButtonColor = determineButtonColor(uid);
+
+            let cardHTML =
+                `<div class="col-sm-6 col-lg-4 mb-4" data-id="${uid}">
+                    <div class="card">
+                        <img src="${image}" class="card-img-top card-img">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <p class="card-descrip">${description}</p>
+                                <p>Photo by <a class="card-profile" href="${profile}"><span class="card-user">${user}</span></a> on <a href="https://unsplash.com/">Unsplash</a></p>
+                            </div>
+                            <button type="button" class="btn ${favButtonColor} button-favorite">♡</button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${uid}-Modal">
+                                View
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="${uid}-Modal" tabindex="-1" aria-labelledby="${uid}-ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="${uid}-ModalLabel">Photo by <a href="${profile}">${user}</a> on <a href="https://unsplash.com/">Unsplash</a></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="${image}" height="100%">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+            row.insertAdjacentHTML("beforeend", cardHTML);
+        }
+
+        function favoriteCard() {
+            buttonFavorite.forEach(btn => {
+                btn.addEventListener("click", e => {
+                    let target = e.target;
+
+                    updateFavoriteButton(target);
+
+                    updateFavoriteButtons();
+                    favoriteCard();
+                });
+            })
+        }
+
+        function addtoFavorites(uid, image, user, profile, description) {
+            for (const item of favorites) {
+                if (item["uid"] === uid) {
+                    return;     // return early to not add card to favorites twice
+                } 
+            }
+
+            let card = new Card(uid, image, user, profile, description);
+
+            favorites.push(card);
+
+            window.localStorage.setItem("UnplashAPI-Favorites", JSON.stringify(favorites));
+        }
+
+        function removeFromFavorites(uid) {
+            for (let i = 0; i < favorites.length; i++) {
+                if (favorites[i]["uid"] == uid) {
+                    favorites.splice(i, 1);
+                    localStorage.setItem("UnplashAPI-Favorites", JSON.stringify(favorites));
+                }
+            }
+        }
+
+        // Changes color when the button is favorited or not
+        function updateFavoriteButton(target) {
+            let targetCard = target.closest(".col-sm-6");
+
+            let uid = targetCard.getAttribute("data-id");
+            let image = targetCard.querySelector(".card-img-top").getAttribute("src")
+            let user = targetCard.querySelector(".card-user").innerText
+            let profile = targetCard.querySelector(".card-profile").getAttribute("href");
+            let description = targetCard.querySelector(".card-descrip").innerText;
+
+            if (target.classList.contains("btn-light")) {       // Favorite card
+                target.classList.remove("btn-light");
+                target.classList.add("btn-danger");
+
+                addtoFavorites(uid, image, user, profile, description);
+            } else {        // Unfavorite card
+                target.classList.remove("btn-danger");
+                target.classList.add("btn-light");
+
+                removeFromFavorites(uid);
+                targetCard.remove();
+            }
+        }
+
+        function updateFavoriteButtons() {
+            buttonFavorite = document.querySelectorAll(".button-favorite");
+        }
+
+        window.addEventListener("load", (e) => {
+            // Check if favorites exist
+            if (JSON.parse(window.localStorage.getItem("UnplashAPI-Favorites")) !== null) {
+                favorites = JSON.parse(window.localStorage.getItem("UnplashAPI-Favorites"));
+            } else {
+                favorites = [];
+            }
+
+            displayCard();
+
+            updateFavoriteButtons();
+            favoriteCard();
+        })
+    </script>
+</body>
+
+</html>

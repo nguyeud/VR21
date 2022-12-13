@@ -20,27 +20,29 @@
 
 <body>
     <header>
-        <nav class="navbar bg-light">
+        <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Unsplash API</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="exercise-16-favorites.html">Favorites</a>
-                      </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="exercise-16-favorites.html">Favorites</a>
+                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                             id="input-search">
                         <button class="btn btn-outline-success" type="submit" id="button-search">Search</button>
                     </form>
-                  </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -82,6 +84,7 @@
             } else {
                 fetchSearch(query);
             }
+
         }
 
         function fetchSearch(query) {
@@ -98,9 +101,10 @@
                         const image = item["urls"]["regular"];
                         const user = item["user"]["name"];
                         const profile = item["user"]["links"]["html"];
+                        const description = item["alt_description"];
 
-                        addToLocalStorage(query, storage, uid, image, user, profile);
-                        createCard(uid, image, user, profile);
+                        addToLocalStorage(query, storage, uid, image, user, profile, description);
+                        createCard(uid, image, user, profile, description);
                     }
                 });
 
@@ -108,15 +112,29 @@
             favoriteCard();
         }
 
-        function createCard(uid, image, user, profile) {
+        function determineButtonColor(uid) {
+            for (const item of favorites) {
+                if (item["uid"] == uid) {
+                    return "btn-danger";
+                }
+            }
+
+            return "btn-light";
+        }
+
+        function createCard(uid, image, user, profile, description) {
+            let favButtonColor = determineButtonColor(uid);
+
             let cardHTML =
                 `<div class="col-sm-6 col-lg-4 mb-4" data-id="${uid}">
                     <div class="card">
                         <img src="${image}" class="card-img-top card-img">
                         <div class="card-body">
-                            <p class="card-text">
-                                Photo by <a class="card-profile" href="${profile}"><span class="card-user">${user}</span></a> on <a href="https://unsplash.com/">Unsplash</a>
-                            </p>
+                            <div class="card-text">
+                                <p class="card-descrip">${description}</p>
+                                <p>Photo by <a class="card-profile" href="${profile}"><span class="card-user">${user}</span></a> on <a href="https://unsplash.com/">Unsplash</a></p>
+                            </div>
+                            <button type="button" class="btn ${favButtonColor} button-favorite">♡</button>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${uid}-Modal">
                                 View
@@ -133,12 +151,11 @@
                                             <img src="${image}" width="100%">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary button-favorite" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-danger">♡</button>
                         </div>
                     </div>
                 </div>`;
@@ -146,11 +163,12 @@
             row.insertAdjacentHTML("beforeend", cardHTML);
         }
 
-        function Card(uid, image, user, profile) {
+        function Card(uid, image, user, profile, description) {
             this.uid = uid,
-            this.image = image,
-            this.user = user,
-            this.profile = profile
+                this.image = image,
+                this.user = user,
+                this.profile = profile
+            this.description = description
         }
 
         function clearPage() {
@@ -161,10 +179,8 @@
             }
         }
 
-        function addToLocalStorage(query, storage, uid, image, user, profile) {
-            console.log("Added to local storage");
-
-            let card = new Card(uid, image, user, profile);
+        function addToLocalStorage(query, storage, uid, image, user, profile, description) {
+            let card = new Card(uid, image, user, profile, description);
 
             storage.push(card);
 
@@ -172,8 +188,6 @@
         }
 
         function retreiveFromLocalStorage(query) {
-            console.log("Retreive from local storage");
-
             const storage = JSON.parse(window.localStorage.getItem(`"UnplashAPI-${query}"`));
 
             clearPage();
@@ -183,8 +197,9 @@
                 const image = item["image"];
                 const user = item["user"];
                 const profile = item["profile"];
+                const description = item["description"];
 
-                createCard(uid, image, user, profile);
+                createCard(uid, image, user, profile, description);
             }
 
             updateFavoriteButtons();
@@ -194,31 +209,72 @@
         function favoriteCard() {
             buttonFavorite.forEach(btn => {
                 btn.addEventListener("click", e => {
-                    let uid = e.target.closest("col-sm-6").getAttribute('data-id');
-                    let target = e.target.closest("col-sm-6");
+                    let target = e.target;
 
-                    let image = target.querySelector(".card-img-top").getAttribute("src");
-                    let user = target.querySelector(".card-user").innerText
-                    let profile = target.querySelector(".card-profile").getAttribute("href");
-
-                    console.log(image, user, profile);
-
-                    updateFavoriteButtons();
-                    updateFavoriteButton();
+                    updateFavoriteButton(target);
                 });
             })
+        }
+
+        function addtoFavorites(uid, image, user, profile, description) {
+            for (const item of favorites) {
+                if (item["uid"] === uid) {
+                    return;     // return early to not add card to favorites twice
+                }
+            }
+
+            let card = new Card(uid, image, user, profile, description);
+
+            favorites.push(card);
+
+            window.localStorage.setItem("UnplashAPI-Favorites", JSON.stringify(favorites));
+        }
+
+        function removeFromFavorites(uid) {
+            for (let i = 0; i < favorites.length; i++) {
+                if (favorites[i]["uid"] == uid) {
+                    favorites.splice(i, 1);
+                    localStorage.setItem("UnplashAPI-Favorites", JSON.stringify(favorites));
+                }
+            }
+        }
+
+        // Changes color when the button is favorited or not
+        function updateFavoriteButton(target) {
+            let targetCard = target.closest(".col-sm-6");
+
+            let uid = targetCard.getAttribute("data-id");
+            let image = targetCard.querySelector(".card-img-top").getAttribute("src")
+            let user = targetCard.querySelector(".card-user").innerText
+            let profile = targetCard.querySelector(".card-profile").getAttribute("href");
+            let description = targetCard.querySelector(".card-descrip").innerText;
+
+            if (target.classList.contains("btn-light")) {       // Favorite card
+                target.classList.remove("btn-light");
+                target.classList.add("btn-danger");
+
+                addtoFavorites(uid, image, user, profile, description);
+            } else {        // Unfavorite card
+                target.classList.remove("btn-danger");
+                target.classList.add("btn-light");
+
+                removeFromFavorites(uid);
+            }
         }
 
         function updateFavoriteButtons() {
             buttonFavorite = document.querySelectorAll(".button-favorite");
         }
 
-        function updateFavoriteButton() {
-
-        }
-
         window.addEventListener("load", (e) => {
             const firstTime = JSON.parse(window.localStorage.getItem(`"UnplashAPI-sunset"`));
+
+            // Check if favorites exist
+            if (JSON.parse(window.localStorage.getItem("UnplashAPI-Favorites")) !== null) {
+                favorites = JSON.parse(window.localStorage.getItem("UnplashAPI-Favorites"));
+            } else {
+                favorites = [];
+            }
 
             // Check if first time on site
             if (firstTime === null) {
@@ -226,16 +282,6 @@
             } else {
                 retreiveFromLocalStorage("sunset");
             }
-
-            // Check if favorites exist
-            if (JSON.parse(window.localStorage.getItem("UnplashAPI-favorites")) !== null) {
-                favorites = JSON.parse(window.localStorage.getItem("UnplashAPI-favorites"));
-            } else {
-                favorites = [];
-            }
-
-            updateFavoriteButtons();
-            favoriteCard();
         })
     </script>
 </body>

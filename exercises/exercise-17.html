@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS - Typehead (jQuery)</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        html {
+            font-size: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #search {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            padding-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        #typeahead {
+            font-size: 2rem;
+            width: 80%;
+            padding: 1rem 2rem;
+            border: 1px solid lightgray;
+            border-radius: 1rem;
+        }
+    </style>
+
+<body>
+    <div id="search">
+        <h1>Search here...</h1>
+        <input id="typeahead" type="text" placeholder="Begin your seach" onkeyup="processChange()">
+        <ul id="dropdown">
+
+        </ul>
+    </div>
+    <script>
+        const searchInput = document.querySelector("#typeahead");
+        const dropDownList = document.querySelector("#dropdown");
+
+        const arrayOfObjects = [
+            {
+                name: "Google News",
+                link: "https://news.google.com/"
+            },
+            {
+                name: "CNN",
+                link: "https://cnn.com/"
+            },
+            {
+                name: "NBC",
+                link: "https://www.nbcnews.com/"
+            },
+            {
+                name: "BBC",
+                link: "https://www.bbc.com/"
+            },
+            {
+                name: "NPR",
+                link: "https://www.npr.org/sections/news/"
+            },
+            {
+                name: "USA Today",
+                link: "https://www.usatoday.com/"
+            },
+            {
+                name: "The Wall Street Journal",
+                link: "https://www.wsj.com/"
+            },
+            {
+                name: "The New York Times",
+                link: "https://www.nytimes.com/"
+            }
+        ];
+
+        function debounce(func, timeout = 300) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => { func.apply(this, args); }, timeout);
+            };
+        }
+
+        function searchArrayOfObjects() {
+            let str = searchInput.value.toLowerCase();
+
+            const items = arrayOfObjects.filter(item => item.name.toLowerCase().indexOf(str) !== -1);
+
+            displayMatches(items);
+        }
+
+        const processChange = debounce(() => searchArrayOfObjects());
+
+        function displayMatches(searchItems) {
+            for (const item of searchItems) {
+                createDropDownSelection(item);
+            }
+        }
+
+        function createDropDownSelection(item) {
+            let listTemplate = `<li><a href="${item.link}">${item.name}</a></li>`;
+            dropDownList.insertAdjacentHTML("beforeend", listTemplate);
+        }
+    </script>
+</body>
+
+</html>
