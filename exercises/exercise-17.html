@@ -109,6 +109,8 @@
         const processChange = debounce(() => searchArrayOfObjects());
 
         function displayMatches(searchItems) {
+            // TODO: clear any existing list items before appending more
+
             for (const item of searchItems) {
                 createDropDownSelection(item);
             }
