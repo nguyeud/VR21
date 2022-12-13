@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS - Typehead (jQuery)</title>
+    <title>JS - Typeahead</title>
     <link rel="stylesheet" href="../styles/reset.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
@@ -20,18 +20,35 @@
             height: 100vh;
         }
 
-        #search {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        a {
+            color: gray;
+            transition: color .25s;
+        }
+
+        a:hover {
+            color: lightsteelblue;
+        }
+
+        li {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid lightgray;
+        }
+
+        li:last-child {
+            border-bottom: none;
         }
 
         h1 {
             font-size: 2rem;
             padding-bottom: 2rem;
             font-weight: 500;
+        }
+
+        #search {
+            padding-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #typeahead {
@@ -41,54 +58,23 @@
             border: 1px solid lightgray;
             border-radius: 1rem;
         }
+
+        ul {
+            width: 85%;
+            font-size: 1.6rem;
+        }
     </style>
 
 <body>
     <div id="search">
-        <h1>Search here...</h1>
-        <input id="typeahead" type="text" placeholder="Begin your seach" onkeyup="processChange()">
-        <ul id="dropdown">
-
-        </ul>
+        <h1>Simple Typeahead Search</h1>
+        <input id="typeahead" type="text" placeholder="Begin your search..." onkeyup="processChange()">
+        <ul id="dropdown"></ul>
     </div>
     <script>
         const searchInput = document.querySelector("#typeahead");
         const dropDownList = document.querySelector("#dropdown");
-
-        const arrayOfObjects = [
-            {
-                name: "Google News",
-                link: "https://news.google.com/"
-            },
-            {
-                name: "CNN",
-                link: "https://cnn.com/"
-            },
-            {
-                name: "NBC",
-                link: "https://www.nbcnews.com/"
-            },
-            {
-                name: "BBC",
-                link: "https://www.bbc.com/"
-            },
-            {
-                name: "NPR",
-                link: "https://www.npr.org/sections/news/"
-            },
-            {
-                name: "USA Today",
-                link: "https://www.usatoday.com/"
-            },
-            {
-                name: "The Wall Street Journal",
-                link: "https://www.wsj.com/"
-            },
-            {
-                name: "The New York Times",
-                link: "https://www.nytimes.com/"
-            }
-        ];
+        const animeList = [];
 
         function debounce(func, timeout = 300) {
             let timer;
@@ -101,25 +87,58 @@
         function searchArrayOfObjects() {
             let str = searchInput.value.toLowerCase();
 
-            const items = arrayOfObjects.filter(item => item.name.toLowerCase().indexOf(str) !== -1);
+            if (str != "") {
+                const items = animeList.filter(item => item.title.toLowerCase().indexOf(str) !== -1);
 
-            displayMatches(items);
+                displayMatches(items);
+            } 
         }
 
         const processChange = debounce(() => searchArrayOfObjects());
 
         function displayMatches(searchItems) {
-            // TODO: clear any existing list items before appending more
+            // Clear any existing list items before appending more
+            let dropDownListTags = document.querySelectorAll("li");
+            
+            for(const tag of dropDownListTags) {
+                tag.remove();
+            }
 
-            for (const item of searchItems) {
-                createDropDownSelection(item);
+            // Only get at most top 10 search results
+            let minLength;
+            if (searchItems.length - 1 < 10) {
+                minLength = searchItems.length;
+            } else {
+                minLength = 10;
+            }
+
+            for (let i = 0; i < minLength; i++) {
+                createDropDownSelection(searchItems[i])
             }
         }
 
         function createDropDownSelection(item) {
-            let listTemplate = `<li><a href="${item.link}">${item.name}</a></li>`;
+            let listTemplate = `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
             dropDownList.insertAdjacentHTML("beforeend", listTemplate);
         }
+
+        function animeObject(title, link) {
+            this.title = title;
+            this.link = link;
+        }
+
+        window.addEventListener("load", (e) => {
+            fetch("https://api.jikan.moe/v4/anime")
+                .then((response) => response.json())
+                .then((data) => {
+                    const API = data.data;
+
+                    for (const item of API) {
+                        let anime = new animeObject(item["title"], item["url"])
+                        animeList.push(anime);
+                    }
+                });
+        })
     </script>
 </body>
 
